@@ -40,6 +40,8 @@ public class ProductoService {
             p.setPrecio(datos.getPrecio());
             p.setStock(datos.getStock());
             p.setDescripcion(datos.getDescripcion());
+            p.setCategoria(datos.getCategoria());
+            p.setImagen(datos.getImagen());
             return repo.save(p);
         }
         return null;
