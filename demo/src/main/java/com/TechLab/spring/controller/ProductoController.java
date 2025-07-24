@@ -3,6 +3,7 @@ package com.TechLab.spring.controller;
 import com.TechLab.spring.model.Producto;
 import com.TechLab.spring.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,32 +19,32 @@ public class ProductoController {
     }
 
     @GetMapping("/list")
-    public List<Producto> listarProductos() {
-        return productoService.listarTodos();
+    public ResponseEntity<List<Producto>> listarProductos() {
+        return ResponseEntity.ok(productoService.listarTodos());
     }
 
     @GetMapping("/buscar")
-    public List<Producto> listarPorNombre(@RequestParam String nombre) {
-        return productoService.buscarPorNombre(nombre);
+    public ResponseEntity<List<Producto>> listarPorNombre(@RequestParam String nombre) {
+        return ResponseEntity.ok(productoService.buscarPorNombre(nombre));
     }
 
     @GetMapping("/{id}")
-    public Producto obtenerProducto(@PathVariable Long id) {
-        return productoService.obtenerPorId(id);
+    public ResponseEntity<Producto> obtenerProducto(@PathVariable Long id) {
+        return ResponseEntity.ok(productoService.obtenerPorId(id));
     }
 
     @PostMapping("/")
-    public Producto crearProducto (@RequestBody Producto nuevoProducto) {
-        return productoService.guardar(nuevoProducto);
+    public ResponseEntity<Producto> crearProducto (@RequestBody Producto nuevoProducto) {
+        return ResponseEntity.ok(productoService.guardar(nuevoProducto));
     }
 
     @PutMapping("/{id}")
-    public Producto actualizarProducto (@PathVariable Long id, @RequestBody Producto datos) {
-        return productoService.actualizar(id, datos);
+    public ResponseEntity<Producto> actualizarProducto (@PathVariable Long id, @RequestBody Producto datos) {
+        return ResponseEntity.ok(productoService.actualizar(id, datos));
     }
 
     @DeleteMapping("/{id}")
-    public String eliminarProducto(@PathVariable Long id) {
-        return productoService.eliminar(id);
+    public ResponseEntity<String> eliminarProducto(@PathVariable Long id) {
+        return ResponseEntity.ok(productoService.eliminar(id));
     }
 }
