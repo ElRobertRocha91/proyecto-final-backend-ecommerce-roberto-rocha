@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,10 @@ public class Usuario {
     private String name;
     private String password;
     private String email;
+
+    // Establecemos la relación que tendra con los roles de uno x uno.
+    // Ej: solo puede tener un rol(usuario o administrador)
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
 
 }
